@@ -1,10 +1,14 @@
 [PHP Modules]
+bcmath
+bz2
 calendar
 Core
 ctype
 curl
 date
+dba
 dom
+ereg
 exif
 fileinfo
 filter
@@ -13,15 +17,18 @@ gd
 gettext
 hash
 iconv
-igbinary
 json
 libxml
+mbstring
 memcached
-msgpack
+mhash
+mysql
+mysqli
 openssl
 pcntl
 pcre
 PDO
+pdo_mysql
 Phar
 posix
 readline
@@ -30,8 +37,8 @@ Reflection
 session
 shmop
 SimpleXML
+soap
 sockets
-sodium
 SPL
 standard
 sysvmsg
@@ -42,8 +49,8 @@ wddx
 xml
 xmlreader
 xmlwriter
-xsl
 Zend OPcache
+zip
 zlib
 
 [Zend Modules]
