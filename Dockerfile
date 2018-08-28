@@ -24,7 +24,7 @@ RUN sed -i "s/;error_log\s*=\s*php_errors.log/error_log=\/data\/log\/php_errors.
 RUN sed -i "s/;error_log\s*=\s*php_errors.log/error_log=\/data\/log\/php_errors.log/g" /etc/php/7.2/cli/php.ini
 RUN sed -i "s/;date.timezone\s*=/date.timezone=PRC/g" /etc/php/7.2/fpm/php.ini
 RUN sed -i "s/;date.timezone\s*=/date.timezone=PRC/g" /etc/php/7.2/cli/php.ini
-RUN apt-get install php-dev && pecl install mcrypt-snapshot
+RUN apt-get install -y php-dev && pecl install mcrypt-snapshot
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
