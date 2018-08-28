@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y nginx \
     php-gd php-pdo php-memcached php-redis \
     php-curl php-pear php-bz2 php-imagick php-dba \
     php-json php-mbstring php-soap php-zip php-xml \
-    curl wget net-tools iputils-ping vim openssl
+    curl wget net-tools iputils-ping vim openssl strace 
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/7.2/fpm/php-fpm.conf
 RUN sed -i "s/;cgi.fix_pathinfo\s*=\s*1/cgi.fix_pathinfo=0/g" /etc/php/7.2/fpm/php.ini
