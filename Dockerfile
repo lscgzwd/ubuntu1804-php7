@@ -19,7 +19,6 @@ RUN sed -i "s/archive\.ubuntu\.com/mirrors.aliyun.com/g" /etc/apt/sources.list &
     php-json php-mbstring php-soap php-zip php-xml \
     curl wget net-tools iputils-ping vim openssl strace \
     php-dev libmcrypt-dev && \
-    sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/7.2/fpm/php-fpm.conf && \
     sed -i "s/;cgi.fix_pathinfo\s*=\s*1/cgi.fix_pathinfo=0/g" /etc/php/7.2/fpm/php.ini && \
     sed -i "s/;error_log\s*=\s*php_errors.log/error_log=\/data\/log\/php_errors.log/g" /etc/php/7.2/fpm/php.ini && \
     sed -i "s/;error_log\s*=\s*php_errors.log/error_log=\/data\/log\/php_errors.log/g" /etc/php/7.2/cli/php.ini && \
@@ -27,12 +26,14 @@ RUN sed -i "s/archive\.ubuntu\.com/mirrors.aliyun.com/g" /etc/apt/sources.list &
     sed -i "s/;date.timezone\s*=/date.timezone=PRC/g" /etc/php/7.2/cli/php.ini && \
     sed -i "s/post_max_size\s*=\s*8M/post_max_size=20M/g" /etc/php/7.2/fpm/php.ini && \
     sed -i "s/post_max_size\s*=\s*8M/post_max_size=20M/g" /etc/php/7.2/cli/php.ini && \
-    sed -i "s/;upload_tmp_dir\s*=/upload_tmp_dir=/data/log/tmp/g" /etc/php/7.2/fpm/php.ini && \
-    sed -i "s/;upload_tmp_dir\s*=/upload_tmp_dir=/data/log/tmp/g" /etc/php/7.2/cli/php.ini && \
+    sed -i "s/;upload_tmp_dir\s*=/upload_tmp_dir=\/data\/log\/tmp/g" /etc/php/7.2/fpm/php.ini && \
+    sed -i "s/;upload_tmp_dir\s*=/upload_tmp_dir=\/data\/log\/tmp/g" /etc/php/7.2/cli/php.ini && \
     sed -i "s/upload_max_filesize\s*=\s*2M/upload_max_filesize=20M/g" /etc/php/7.2/fpm/php.ini && \
     sed -i "s/upload_max_filesize\s*=\s*2M/upload_max_filesize=20M/g" /etc/php/7.2/cli/php.ini && \
-    sed -i "s/;session.save_path\s*=\s*\".*\"/session.save_path=\"/data/log/tmp\"/g" /etc/php/7.2/fpm/php.ini && \
-    sed -i "s/;session.save_path\s*=\s*\".*\"/session.save_path=\"/data/log/tmp\"/g" /etc/php/7.2/cli/php.ini && \
+    sed -i "s/;session.save_path\s*=\s*\".*\"/session.save_path=\"\/data\/log\/tmp\"/g" /etc/php/7.2/fpm/php.ini && \
+    sed -i "s/;session.save_path\s*=\s*\".*\"/session.save_path=\"\/data\/log\/tmp\"/g" /etc/php/7.2/cli/php.ini && \
+    sed -i "s/pid\s*=\s*.*pid/pid=\/data\/log\/tmp\/php-fpm.pid/g" /etc/php/7.2/fpm/php-fpm.conf && \
+    sed -i "s/error_log\s*=\s*.*fpm.log/error_log=\/data\/log\/tmp\/php-fpm.log/g" /etc/php/7.2/fpm/php-fpm.conf && \
     pecl install mcrypt-snapshot && \
     echo "extension=mcrypt.so" > /etc/php/7.2/mods-available/20-mcrypt.ini && \
     ln -s /etc/php/7.2/mods-available/20-mcrypt.ini /etc/php/7.2/cli/conf.d/ && \
