@@ -12,7 +12,7 @@ RUN sed -i "s/archive\.ubuntu\.com/mirrors.aliyun.com/g" /etc/apt/sources.list &
     dpkg-reconfigure -f noninteractive tzdata && \
     apt-get install -yq locales && \
     locale-gen en_US.UTF-8 && \
-    apt-get install -yq  \
+    apt-get install -yq nginx-full  \
     php-cli php-fpm php-common php-mysql php-bcmath \
     php-gd php-pdo php-memcached php-redis \
     php-curl php-pear php-bz2 php-imagick \
