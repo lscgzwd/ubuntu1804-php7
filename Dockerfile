@@ -5,9 +5,10 @@ MAINTAINER i@shuncheng.lu
 ENV LANG       en_US.UTF-8
 ENV LC_ALL     en_US.UTF-8
 ENV TZ=Asia/Shanghai
+COPY nodesource.gpg.key /tmp/nodesource.gpg.key
 RUN sed -i "s/archive\.ubuntu\.com/mirrors.aliyun.com/g" /etc/apt/sources.list && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
-    cat nodesource.gpg.key | apt-key add - && \
+    cat /tmp/nodesource.gpg.key | apt-key add - && \
     echo 'deb https://mirrors.tuna.tsinghua.edu.cn/nodesource/deb_10.x bionic main' > /etc/apt/sources.list.d/nodesource.list && \
     echo 'deb-src https://mirrors.tuna.tsinghua.edu.cn/nodesource/deb_10.x bionic main' >> /etc/apt/sources.list.d/nodesource.list && \
     apt-get update && \
