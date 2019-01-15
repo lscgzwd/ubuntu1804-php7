@@ -22,7 +22,7 @@ RUN sed -i "s/archive\.ubuntu\.com/mirrors.aliyun.com/g" /etc/apt/sources.list &
     php-json php-mbstring php-soap php-zip php-xml \
     curl wget net-tools iputils-ping vim openssl strace \
     php-dev libmcrypt-dev cron nodejs && \
-    npm install -g n pm2 
+    npm install -g n pm2 && \ 
     sed -i "s/pid\s*=\s*.*pid/pid=\/data\/log\/tmp\/php-fpm.pid/g" /etc/php/7.2/fpm/php-fpm.conf && \
     sed -i "s/error_log\s*=\s*.*fpm.log/error_log=\/data\/log\/tmp\/php-fpm.log/g" /etc/php/7.2/fpm/php-fpm.conf && \
     pecl install mcrypt-snapshot && \
