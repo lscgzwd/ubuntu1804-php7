@@ -9,8 +9,9 @@ COPY setup_10.x /tmp/setup_10.x
 # RUN sed -i "s/archive\.ubuntu\.com/mirrors.aliyun.com/g" /etc/apt/sources.list && \
 RUN    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
     apt-get update && \
-    apt-get install -yq tzdata && \
+    apt-get install -yq tzdata software-properties-common && \
     dpkg-reconfigure -f noninteractive tzdata && \
+    add-apt-repository -y ppa:ondrej/php && \
     apt-get install -yq locales && \
     locale-gen en_US.UTF-8 && \
     apt-get install -yq nginx-full  \
