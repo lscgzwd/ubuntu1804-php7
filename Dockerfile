@@ -23,7 +23,7 @@ RUN    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezon
     php-dev libmcrypt-dev cron nodejs && \
     bash /tmp/setup_10.x && \
     apt-get install -y nodejs && \
-    npm install -g n pm2 && \ 
+    npm install -g n pm2 nuxt webpack cnpm && \ 
     sed -i "s/pid\s*=\s*.*pid/pid=\/data\/log\/tmp\/php-fpm.pid/g" /etc/php/7.2/fpm/php-fpm.conf && \
     sed -i "s/error_log\s*=\s*.*fpm.log/error_log=\/data\/log\/tmp\/php-fpm.log/g" /etc/php/7.2/fpm/php-fpm.conf && \
     pecl install mcrypt-snapshot && \
