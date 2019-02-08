@@ -21,6 +21,7 @@ RUN    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezon
     php-json php-mbstring php-soap php-zip php-xml \
     curl wget net-tools iputils-ping vim openssl strace \
     php-dev libmcrypt-dev cron nodejs && \
+    apt-get upgrade -y && \
     bash /tmp/setup_10.x && \
     apt-get install -y nodejs && \
     npm install -g n pm2 nuxt webpack cnpm && \ 
@@ -30,10 +31,12 @@ RUN    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezon
     echo "extension=mcrypt.so" > /etc/php/7.2/mods-available/20-mcrypt.ini && \
     ln -s /etc/php/7.2/mods-available/20-mcrypt.ini /etc/php/7.2/cli/conf.d/ && \
     echo "fastcgi_split_path_info ^(.+\\.php)(/.+)\$; #增加这一句 \nfastcgi_param PATH_INFO \$fastcgi_path_info; #增加这一句 \nfastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;" >> /etc/nginx/fastcgi_params && \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && npm cache clean --force && \
     rm -rf /etc/nginx/nginx.conf && \
     rm -rf /etc/php/7.2/cli/php.ini && \
-    rm -rf /etc/php/7.2/fpm/php.ini
+    rm -rf /etc/php/7.2/fpm/php.ini && \
+    groupadd admin && \
+    useradd admin -g 1000
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY php.ini /etc/php/7.2/cli/php.ini
 COPY php.ini /etc/php/7.2/fpm/php.ini
