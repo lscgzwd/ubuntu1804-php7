@@ -14,7 +14,7 @@ RUN    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezon
     add-apt-repository -y ppa:ondrej/php && \
     apt-get install -yq locales && \
     locale-gen en_US.UTF-8 && \
-    apt-get install -yq nginx-full  \
+    apt-get install -yq git nginx-full  \
     php-cli php-fpm php-common php-mysql php-bcmath \
     php-gd php-memcached php-redis \
     php-curl php-pear php-bz2 php-imagick \
