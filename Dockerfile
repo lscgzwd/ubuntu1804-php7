@@ -20,7 +20,7 @@ RUN    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezon
     php-curl php-pear php-bz2 php-imagick \
     php-json php-mbstring php-soap php-zip php-xml \
     curl wget net-tools iputils-ping vim openssl strace \
-    php-dev libmcrypt-dev cron nodejs && \
+    php-dev libmcrypt-dev cron nodejs beanstalkd supervisor composer && \
     apt-get upgrade -y && \
     bash /tmp/setup_10.x && \
     apt-get install -y nodejs && \
