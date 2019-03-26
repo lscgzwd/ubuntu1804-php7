@@ -15,12 +15,12 @@ RUN    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezon
     apt-get install -yq locales && \
     locale-gen en_US.UTF-8 && \
     apt-get install -yq git nginx-full  \
-    php-cli7.2 php-fpm7.2 php-common7.2 php-mysql7.2 php-bcmath7.2 \
-    php-gd7.2 php-memcached7.2 php-redis7.2 \
-    php-curl7.2 php-pear7.2 php-bz27.2 php-imagick7.2 \
-    php-json7.2 php-mbstring7.2 php-soap7.2 php-zip7.2 php-xml7.2 \
+    php7.2-cli php7.2-fpm php7.2-common php7.2-mysql php7.2-bcmath \
+    php7.2-gd php7.2-memcached php7.2-redis \
+    php7.2-curl php7.2-pear php7.2-bz2 php7.2-imagick \
+    php7.2-json php7.2-mbstring php7.2-soap php7.2-zip php7.2-xml \
     curl wget net-tools iputils-ping vim openssl strace \
-    php-dev7.2 libmcrypt-dev cron nodejs beanstalkd supervisor composer && \
+    php7.2-dev libmcrypt-dev cron nodejs beanstalkd supervisor composer && \
     apt-get upgrade -y && \
     bash /tmp/setup_10.x && \
     apt-get install -y nodejs && \
