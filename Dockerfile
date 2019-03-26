@@ -16,8 +16,8 @@ RUN    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezon
     locale-gen en_US.UTF-8 && \
     apt-get install -yq git nginx-full  \
     php7.2-cli php7.2-fpm php7.2-common php7.2-mysql php7.2-bcmath \
-    php7.2-gd php7.2-memcached php7.2-redis \
-    php7.2-curl php7.2-pear php7.2-bz2 php7.2-imagick \
+    php7.2-gd php-memcached php7.2-redis \
+    php7.2-curl php-pear php7.2-bz2 php7.2-imagick \
     php7.2-json php7.2-mbstring php7.2-soap php7.2-zip php7.2-xml \
     curl wget net-tools iputils-ping vim openssl strace \
     php7.2-dev libmcrypt-dev cron nodejs beanstalkd supervisor composer && \
