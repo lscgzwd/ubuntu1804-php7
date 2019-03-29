@@ -17,7 +17,7 @@ RUN    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezon
     apt-get install -yq git nginx-full  \
     php7.0-cli php7.0-fpm php7.0-common php7.0-mysql php7.0-bcmath \
     php7.0-gd php-memcached php7.0-redis \
-    php7.0-curl php-pear php7.0-bz2 php7.0-imagick \
+    php7.0-curl php-pear php7.0-bz2 php7.0-imagick php7.0-mcrypt \
     php7.0-json php7.0-mbstring php7.0-soap php7.0-zip php7.0-xml \
     curl wget net-tools iputils-ping vim openssl strace \
     php7.0-dev libmcrypt-dev cron nodejs beanstalkd supervisor composer && \
@@ -27,9 +27,6 @@ RUN    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezon
     npm install -g n pm2 nuxt webpack cnpm && \ 
     sed -i "s/pid\s*=\s*.*pid/pid=\/data\/log\/php-fpm.pid/g" /etc/php/7.0/fpm/php-fpm.conf && \
     sed -i "s/error_log\s*=\s*.*fpm.log/error_log=\/data\/log\/php-fpm.log/g" /etc/php/7.0/fpm/php-fpm.conf && \
-    pecl install mcrypt-snapshot && \
-    echo "extension=mcrypt.so" > /etc/php/7.0/mods-available/20-mcrypt.ini && \
-    ln -s /etc/php/7.0/mods-available/20-mcrypt.ini /etc/php/7.0/cli/conf.d/ && \
     echo "fastcgi_split_path_info ^(.+\\.php)(/.+)\$; #增加这一句 \nfastcgi_param PATH_INFO \$fastcgi_path_info; #增加这一句 \nfastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;" >> /etc/nginx/fastcgi_params && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && npm cache clean --force && \
     rm -rf /etc/nginx/nginx.conf && \
