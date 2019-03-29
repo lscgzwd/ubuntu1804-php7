@@ -15,30 +15,30 @@ RUN    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezon
     apt-get install -yq locales && \
     locale-gen en_US.UTF-8 && \
     apt-get install -yq git nginx-full  \
-    php7.0-cli php7.0-fpm php7.0-common php7.0-mysql php7.0-bcmath \
-    php7.0-gd php-memcached php7.0-redis \
-    php7.0-curl php-pear php7.0-bz2 php7.0-imagick \
-    php7.0-json php7.0-mbstring php7.0-soap php7.0-zip php7.0-xml \
+    php5.6-cli php5.6-fpm php5.6-common php5.6-mysql php5.6-bcmath \
+    php5.6-gd php-memcached php5.6-redis \
+    php5.6-curl php-pear php5.6-bz2 php5.6-imagick \
+    php5.6-json php5.6-mbstring php5.6-soap php5.6-zip php5.6-xml \
     curl wget net-tools iputils-ping vim openssl strace \
-    php7.0-dev libmcrypt-dev cron nodejs beanstalkd supervisor composer && \
+    php5.6-dev libmcrypt-dev cron nodejs beanstalkd supervisor composer && \
     apt-get upgrade -y && \
     bash /tmp/setup_10.x && \
     apt-get install -y nodejs && \
     npm install -g n pm2 nuxt webpack cnpm && \ 
-    sed -i "s/pid\s*=\s*.*pid/pid=\/data\/log\/php-fpm.pid/g" /etc/php/7.0/fpm/php-fpm.conf && \
-    sed -i "s/error_log\s*=\s*.*fpm.log/error_log=\/data\/log\/php-fpm.log/g" /etc/php/7.0/fpm/php-fpm.conf && \
+    sed -i "s/pid\s*=\s*.*pid/pid=\/data\/log\/php-fpm.pid/g" /etc/php/5.6/fpm/php-fpm.conf && \
+    sed -i "s/error_log\s*=\s*.*fpm.log/error_log=\/data\/log\/php-fpm.log/g" /etc/php/5.6/fpm/php-fpm.conf && \
     pecl install mcrypt-snapshot && \
-    echo "extension=mcrypt.so" > /etc/php/7.0/mods-available/20-mcrypt.ini && \
-    ln -s /etc/php/7.0/mods-available/20-mcrypt.ini /etc/php/7.0/cli/conf.d/ && \
+    echo "extension=mcrypt.so" > /etc/php/5.6/mods-available/20-mcrypt.ini && \
+    ln -s /etc/php/5.6/mods-available/20-mcrypt.ini /etc/php/5.6/cli/conf.d/ && \
     echo "fastcgi_split_path_info ^(.+\\.php)(/.+)\$; #增加这一句 \nfastcgi_param PATH_INFO \$fastcgi_path_info; #增加这一句 \nfastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;" >> /etc/nginx/fastcgi_params && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && npm cache clean --force && \
     rm -rf /etc/nginx/nginx.conf && \
-    rm -rf /etc/php/7.0/cli/php.ini && \
-    rm -rf /etc/php/7.0/fpm/php.ini && \
+    rm -rf /etc/php/5.6/cli/php.ini && \
+    rm -rf /etc/php/5.6/fpm/php.ini && \
     groupadd admin && \
     useradd admin -g 1000
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY php.ini /etc/php/7.0/cli/php.ini
-COPY php.ini /etc/php/7.0/fpm/php.ini
+COPY php.ini /etc/php/5.6/cli/php.ini
+COPY php.ini /etc/php/5.6/fpm/php.ini
 EXPOSE 80
 CMD tail /dev/null
