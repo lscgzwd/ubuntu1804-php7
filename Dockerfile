@@ -21,7 +21,7 @@ RUN apt-get install -yq curl wget net-tools iputils-ping vim openssl strace \
 RUN (echo piyuedashi2018;echo piyuedashi2018) | smbpasswd -a -s pyds
 # nginx php
 RUN add-apt-repository -y ppa:ondrej/php && \
-    apt-get install -yq php5.6-cli php5.6-fpm php5.6-common php5.6-mysql php5.6-bcmath \
+    apt-get install -yq nginx-full php5.6-cli php5.6-fpm php5.6-common php5.6-mysql php5.6-bcmath \
     php5.6-gd php-memcached php5.6-redis \
     php5.6-curl php-pear php5.6-bz2 php5.6-imagick php5.6-mcrypt \
     php5.6-json php5.6-mbstring php5.6-soap php5.6-zip php5.6-xml \
