@@ -18,7 +18,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone &
 RUN apt-get install -yq curl wget net-tools iputils-ping vim openssl strace \
     cron beanstalkd supervisor composer openssh-server librsvg2* git traceroute \
     bash-completion samba
-RUN echo -e "piyuedashi2018\npiyuedashi2018" | smbpasswd -a -s pyds
+RUN (echo piyuedashi2018;echo piyuedashi2018) | smbpasswd -a -s pyds
 # nginx php
 RUN add-apt-repository -y ppa:ondrej/php && \
     apt-get install -yq php5.6-cli php5.6-fpm php5.6-common php5.6-mysql php5.6-bcmath \
