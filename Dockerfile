@@ -18,10 +18,10 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone &
 RUN apt-get install -yq curl wget net-tools iputils-ping vim openssl strace \
     cron beanstalkd supervisor composer openssh-server librsvg2* git traceroute \
     bash-completion samba
-RUN echo -e "piyuedashi2018\npiyuedashi2018" | smbpasswd -a -s pyds
+RUN (echo piyuedashi2018;echo piyuedashi2018) | smbpasswd -a -s pyds
 # nginx php
 RUN add-apt-repository -y ppa:ondrej/php && \
-    apt-get install -yq php7.0-cli php7.0-fpm php7.0-common php7.0-mysql php7.0-bcmath \
+    apt-get install -yq nginx-full php7.0-cli php7.0-fpm php7.0-common php7.0-mysql php7.0-bcmath \
     php7.0-gd php-memcached php7.0-redis \
     php7.0-curl php-pear php7.0-bz2 php7.0-imagick php7.0-mcrypt \
     php7.0-json php7.0-mbstring php7.0-soap php7.0-zip php7.0-xml \
