@@ -1,0 +1,12 @@
+#!/bin/bash
+#./extract-lines --vertical ./b.jpg | ./show-lines --vertical ./b.jpg
+#./extract-lines --horizontal http://www.yijiafen.com//uploads/answer-cards/2017-01-16/f98746a8-6105-4353-82aa-4fa5ea225735.jpg | ./show-lines --horizontal http://www.yijiafen.com//uploads/answer-cards/2017-01-16/f98746a8-6105-4353-82aa-4fa5ea225735.jpg
+#./extract-lines --horizontal http://www.yijiafen.com//uploads/answer-cards/2017-01-16/ff16e3fa-35eb-44f7-9d33-4279225270a6.jpg | ./show-lines --horizontal http://www.yijiafen.com//uploads/answer-cards/2017-01-16/ff16e3fa-35eb-44f7-9d33-4279225270a6.jpg
+#./extract-lines --vertical http://www.yijiafen.com//uploads/answer-cards/20170113/c5316aca-b205-4d10-a001-7f7784259bb6.png | ./show-lines --vertical http://www.yijiafen.com//uploads/answer-cards/20170113/c5316aca-b205-4d10-a001-7f7784259bb6.png
+#./extract-lines --vertical http://www.yijiafen.com//uploads/raw-user-answers/2017-03-06/deskewed/6e6baf6e-05c7-4484-8320-280f4984f40c.jpg | ./show-lines --vertical http://www.yijiafen.com//uploads/raw-user-answers/2017-03-06/deskewed/6e6baf6e-05c7-4484-8320-280f4984f40c.jpg
+#./extract-lines --vertical http://piyuedashi.com:8080/uploads/answer-cards/20170309/31b5b8d1-af60-461f-a5b5-12912babf38f.png | ./show-lines --vertical http://piyuedashi.com:8080/uploads/answer-cards/20170309/31b5b8d1-af60-461f-a5b5-12912babf38f.png
+#./extract-lines --horizontal http://piyuedashi.com:8080/uploads/raw-user-answers/2017-03-19/deskewed/aac21bfb-797f-4270-81b6-b470a0238c41.jpg | ./show-lines --horizontal http://piyuedashi.com:8080/uploads/raw-user-answers/2017-03-19/deskewed/aac21bfb-797f-4270-81b6-b470a0238c41.jpg
+#./extract-lines --horizontal ~/w-deskewed.jpg | ./show-lines --horizontal ~/w-deskewed.jpg
+#./extract-lines --vertical ~/w-deskewed.jpg | ./show-lines --vertical ~/w-deskewed.jpg
+#./extract-lines --horizontal http://s3.cn-north-1.amazonaws.com.cn/pyds/uploads/raw-user-answers/2017-04-26/deskewed/ab3978a9-e999-48cf-ada1-1ca9725f4681.jpg | ./show-lines --horizontal http://s3.cn-north-1.amazonaws.com.cn/pyds/uploads/raw-user-answers/2017-04-26/deskewed/ab3978a9-e999-48cf-ada1-1ca9725f4681.jpg
+./extract-lines --vertical http://s3.cn-north-1.amazonaws.com.cn/pyds/uploads/raw-user-answers/2017-04-26/deskewed/ab3978a9-e999-48cf-ada1-1ca9725f4681.jpg | ./show-lines --vertical http://s3.cn-north-1.amazonaws.com.cn/pyds/uploads/raw-user-answers/2017-04-26/deskewed/ab3978a9-e999-48cf-ada1-1ca9725f4681.jpg
