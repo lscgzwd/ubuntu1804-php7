@@ -14,8 +14,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone &
         apt-get update && \
         apt-get install -yq tzdata software-properties-common && \
         dpkg-reconfigure -f noninteractive tzdata && \
-        apt-get install -yq locales && \
-        locale-gen en_US.UTF-8 sudo
+        apt-get install -yq locales sudo && \
+        locale-gen en_US.UTF-8
 RUN echo "%pyds ALL=(ALL) ALL" >> /etc/sudoers
 RUN apt-get install -yq curl wget net-tools iputils-ping vim openssl strace \
     cron beanstalkd supervisor openssh-server librsvg2* git traceroute \
