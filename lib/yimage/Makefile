@@ -39,7 +39,7 @@ so: yimage_wrap.o yimage.so.o
 	$(CC) -shared -o yimage.so yimage_wrap.o yimage.so.o $(CCFLAG)
 
 install:
-	sudo cp yimage.so $(PHP_EXTENSION_DIR)
+	cp yimage.so $(PHP_EXTENSION_DIR)
 
 .PHONY: clean check
 clean:

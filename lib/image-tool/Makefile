@@ -80,4 +80,4 @@ clean:
 
 install:
 	install yjf-deskew /usr/local/bin
-	sudo cp image_tool.so $(PHP_EXTENSION_DIR)
+	cp image_tool.so $(PHP_EXTENSION_DIR)
