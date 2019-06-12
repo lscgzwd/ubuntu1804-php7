@@ -6,6 +6,7 @@ ENV LANG       en_US.UTF-8
 ENV LC_ALL     en_US.UTF-8
 ENV TZ         Asia/Shanghai
 COPY setup_10.x /tmp/setup_10.x
+COPY wkhtmltox.deb /tmp/wkhtmltox.deb
 COPY lib /tmp/lib
 RUN groupadd -g 1000 pyds && useradd -s /bin/bash -g pyds pyds
 RUN echo "root:piyuedashi2018" | chpasswd
@@ -44,7 +45,8 @@ RUN apt-get install -yq libmagick++-6.q16-dev libmagick++-dev libmagickcore-6.q1
     ln -sf /usr/lib/x86_64-linux-gnu/ImageMagick-6.9.7/bin-q16/Magick-config /usr/bin/Magick-config && \
     cd /tmp/lib/image-tool && make && make install && \
     cd /tmp/lib/yimage && make && make install
-
+# wkhtmltox.deb export pdf
+RUN dpkg -i /tmp/wkhtmltox.deb
 # nodejs & npm
 RUN bash /tmp/setup_10.x && \
     apt-get install -y nodejs && \
