@@ -21,7 +21,7 @@ RUN echo "%pyds ALL=(ALL) ALL" >> /etc/sudoers
 RUN apt-get install -yq curl wget net-tools iputils-ping vim openssl strace \
     cron beanstalkd supervisor openssh-server librsvg2* git traceroute \
     bash-completion samba openjdk-8-jdk xfonts-75dpi xfonts-base xfonts-utils \
-    xfonts-encodings
+    xfonts-encodings zip unzip
 RUN (echo piyuedashi2018;echo piyuedashi2018) | smbpasswd -a -s pyds
 # nginx php
 RUN add-apt-repository -y ppa:ondrej/php && \
