@@ -23,6 +23,8 @@ RUN apt-get install -yq curl wget net-tools iputils-ping vim openssl strace \
     bash-completion samba openjdk-8-jdk xfonts-75dpi xfonts-base xfonts-utils \
     xfonts-encodings zip unzip
 RUN (echo piyuedashi2018;echo piyuedashi2018) | smbpasswd -a -s pyds
+# inkscape
+RUN add-apt-repository ppa:inkscape.dev/stable && apt-get update && apt-get install inkscape
 # nginx php
 RUN add-apt-repository -y ppa:ondrej/php && \
     apt-get install -yq nginx-full php7.0-cli php7.0-fpm php7.0-common php7.0-mysql php7.0-bcmath \
