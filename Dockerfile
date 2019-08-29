@@ -14,7 +14,7 @@ RUN    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezon
     add-apt-repository -y ppa:ondrej/php && \
     apt-get install -yq locales && \
     locale-gen en_US.UTF-8 && \
-    apt-get install -yq git nginx-full lua-nginx-redis nginx-extras lua-nginx-redis-connector lua-nginx-string lua-nginx-cookie lua-nginx-kafka  \
+    apt-get install -yq git lua-nginx-redis nginx-extras lua-nginx-redis-connector lua-nginx-string lua-nginx-cookie lua-nginx-kafka  \
     php7.2-cli php7.2-fpm php7.2-common php7.2-mysql php7.2-bcmath \
     php7.2-gd php-memcached php7.2-redis \
     php7.2-curl php-pear php7.2-bz2 php7.2-imagick \
