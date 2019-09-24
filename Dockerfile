@@ -55,7 +55,7 @@ RUN dpkg -i /tmp/wkhtmltox.deb
 RUN bash /tmp/setup_10.x && \
     apt-get install -y nodejs && \
     npm install -g n pm2 nuxt webpack cnpm && \
-    cnpm i puppeteer
+    cnpm install -g puppeteer urlencode
 # clean
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && npm cache clean --force
 COPY nginx.conf /etc/nginx/nginx.conf
