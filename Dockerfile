@@ -34,7 +34,7 @@ RUN apt-get install -yq curl wget net-tools iputils-ping vim openssl strace \
 RUN (echo piyuedashi2018;echo piyuedashi2018) | smbpasswd -a -s pyds
 # opencv4.1
 RUN cd /tmp && wget -O opencv.zip https://github.com/opencv/opencv/archive/4.1.1.zip && \
-    unzip opencv.zip && cd opencv && mkdir release && cd release && \
+    unzip opencv.zip && cd opencv-4.1.1 && mkdir release && cd release && \
     cmake -DCMAKE_BUILD_TYPE=Release \
     -DOPENCV_GENERATE_PKGCONFIG=ON \
     -DCMAKE_INSTALL_PREFIX=/usr/local .. && make -j4 && make install
