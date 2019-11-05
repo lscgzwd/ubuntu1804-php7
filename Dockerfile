@@ -71,10 +71,11 @@ RUN apt-get install -yq libmagick++-6.q16-dev libmagick++-dev libmagickcore-6.q1
 # wkhtmltox.deb export pdf
 RUN dpkg -i /tmp/wkhtmltox.deb
 # nodejs & npm
-RUN bash /tmp/setup_10.x && \
+RUN npm config set puppeteer_download_host=https://npm.taobao.org/mirrors && \
+    bash /tmp/setup_10.x && \
     apt-get install -y nodejs && \
     npm install -g n pm2 nuxt webpack cnpm && \
-    cnpm install -g puppeteer urlencode
+    npm install -g puppeteer urlencode
 # clean
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && npm cache clean --force
 COPY nginx.conf /etc/nginx/nginx.conf
