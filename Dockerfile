@@ -17,7 +17,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone &
         dpkg-reconfigure -f noninteractive tzdata && \
         apt-get install -yq locales sudo && \
         locale-gen en_US.UTF-8
-RUN echo "%pyds ALL=(ALL) ALL" >> /etc/sudoers
+RUN echo "%pyds ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 RUN apt-get install -yq curl wget net-tools iputils-ping vim openssl strace \
     cron beanstalkd supervisor openssh-server librsvg2* git traceroute \
     bash-completion samba openjdk-8-jdk xfonts-75dpi xfonts-base xfonts-utils \
@@ -27,8 +27,21 @@ RUN apt-get install -yq curl wget net-tools iputils-ping vim openssl strace \
     libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 \
     libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 \
     libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 \
-    lsb-release xdg-utils
+    lsb-release xdg-utils build-essential cmake git libgtk2.0-dev pkg-config \
+    libavcodec-dev libavformat-dev libswscale-dev \
+    python-dev python-numpy python3-dev python3-numpy \
+    libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
 RUN (echo piyuedashi2018;echo piyuedashi2018) | smbpasswd -a -s pyds
+# opencv4.1
+RUN cd /tmp && wget -O opencv.zip https://github.com/opencv/opencv/archive/4.1.1.zip && \
+    unzip opencv.zip && cd opencv && mkdir release && cd release && \
+    cmake -DCMAKE_BUILD_TYPE=Release \
+    -DOPENCV_GENERATE_PKGCONFIG=ON \
+    -DCMAKE_INSTALL_PREFIX=/usr/local .. && make -j4 && make install
+# golang 1.13
+RUN cd /tmp && wget -O go.tar.gz https://studygolang.com/dl/golang/go1.13.4.linux-amd64.tar.gz && \
+    tar xvf go.tar.gz && mv go /usr/local/ && \
+    echo "export GOROOT=/usr/local/go              # 安装目录。\nexport GOPATH=\/data/go     # 工作环境\nexport GOBIN=\$GOPATH/bin           # 可执行文件存放\nexport PATH=\$GOPATH:\$GOBIN:\$GOROOT/bin:\$PATH       # 添加PATH路径" > /etc/bash.bashrc
 # inkscape
 RUN add-apt-repository ppa:inkscape.dev/stable && apt-get update && apt-get install -yq inkscape
 # nginx php
