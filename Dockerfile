@@ -30,7 +30,7 @@ RUN apt-get install -yq curl wget net-tools iputils-ping vim openssl strace \
     lsb-release xdg-utils build-essential cmake git libgtk2.0-dev pkg-config \
     libavcodec-dev libavformat-dev libswscale-dev \
     python-dev python-numpy python3-dev python3-numpy \
-    libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev
+    libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev
 RUN (echo piyuedashi2018;echo piyuedashi2018) | smbpasswd -a -s pyds
 # opencv4.1
 RUN cd /tmp && wget -O opencv.zip https://github.com/opencv/opencv/archive/4.1.1.zip && \
