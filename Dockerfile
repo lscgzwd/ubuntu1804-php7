@@ -41,7 +41,7 @@ RUN cd /tmp && wget -O opencv.zip https://github.com/opencv/opencv/archive/4.1.1
 # golang 1.13
 RUN cd /tmp && wget -O go.tar.gz https://studygolang.com/dl/golang/go1.13.4.linux-amd64.tar.gz && \
     tar xvf go.tar.gz && mv go /usr/local/ && \
-    echo "export GOROOT=/usr/local/go              # 安装目录。\nexport GOPATH=\/data/go     # 工作环境\nexport GOBIN=\$GOPATH/bin           # 可执行文件存放\nexport PATH=\$GOPATH:\$GOBIN:\$GOROOT/bin:\$PATH       # 添加PATH路径" > /etc/bash.bashrc
+    echo "export GOROOT=/usr/local/go              # 安装目录。\nexport GOPATH=/data/go     # 工作环境\nexport GOBIN=\$GOPATH/bin           # 可执行文件存放\nexport PATH=\$GOPATH:\$GOBIN:\$GOROOT/bin:\$PATH       # 添加PATH路径" >> /etc/bash.bashrc
 # inkscape
 RUN add-apt-repository ppa:inkscape.dev/stable && apt-get update && apt-get install -yq inkscape
 # nginx php
