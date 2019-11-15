@@ -26,11 +26,11 @@ test: yimage.o test.o
 yjf-deskew: yimage.o yjf-deskew.o
 	$(CC) -O2 -o yjf-deskew yimage.o yjf-deskew.o $(CCFLAG)
 
-yimage_wrap.cpp:
-	swig -c++ -php yimage.i
+yimage_wrap.cxx:
+	swig -c++ -php7 yimage.i
 
-yimage_wrap.o: yimage_wrap.cpp
-	$(CC) -fpic $(PHP_INCLUDES) -fpermissive -c yimage_wrap.cpp -o yimage_wrap.o
+yimage_wrap.o: yimage_wrap.cxx
+	$(CC) -fpic $(PHP_INCLUDES) -fpermissive -c yimage_wrap.cxx -o yimage_wrap.o
 
 yimage.so.o:
 	$(CC) -fpic -O2 -o yimage.so.o -c yimage.cpp $(CCFLAG) $(DEBUG_FLAG)
@@ -43,7 +43,7 @@ install:
 
 .PHONY: clean check
 clean:
-	-rm test *.o yimage_wrap.cpp *.so php_yimage.h
+	-rm -rf test *.o *.so yimage_wrap.cxx php_yimage.h
 
 check:
 	php t.php

@@ -66,8 +66,8 @@ RUN apt-get install -yq libmagick++-6.q16-dev libmagick++-dev libmagickcore-6.q1
     libboost-all-dev swig libjsoncpp-dev pagetools && \
     ln -sf /usr/lib/x86_64-linux-gnu/ImageMagick-6.9.7/bin-q16/Magick++-config /usr/bin/Magick++-config && \
     ln -sf /usr/lib/x86_64-linux-gnu/ImageMagick-6.9.7/bin-q16/Magick-config /usr/bin/Magick-config && \
-    cd /tmp/lib/image-tool && make && make install && \
-    cd /tmp/lib/yimage && make && make install
+    cd /tmp/lib/image-tool && make clean && make && make install && \
+    cd /tmp/lib/yimage && make clean && make && make install
 # wkhtmltox.deb export pdf
 RUN dpkg -i /tmp/wkhtmltox.deb
 # nodejs & npm

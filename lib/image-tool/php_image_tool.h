@@ -20,16 +20,8 @@ extern zend_module_entry image_tool_module_entry;
 # define PHP_IMAGE_TOOL_API
 #endif
 
-#ifdef ZTS
-#include "TSRM.h"
-#endif
-
-PHP_MINIT_FUNCTION(image_tool);
-PHP_MSHUTDOWN_FUNCTION(image_tool);
-PHP_RINIT_FUNCTION(image_tool);
-PHP_RSHUTDOWN_FUNCTION(image_tool);
-PHP_MINFO_FUNCTION(image_tool);
-
 ZEND_NAMED_FUNCTION(_wrap_classify_by_line);
 ZEND_NAMED_FUNCTION(_wrap_extract_black_rectangle);
+PHP_MINIT_FUNCTION(image_tool);
+
 #endif /* PHP_IMAGE_TOOL_H */

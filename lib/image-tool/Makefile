@@ -59,11 +59,11 @@ utils.o: utils.cpp
 test: test.o image.o utils.o
 	$(CC) -o test test.o utils.o image.o $(LDFLAG)
 
-image_tool_wrap.cpp:
-	swig -c++ -php image_tool.i
+image_tool_wrap.cxx:
+	swig -c++ -php7 image_tool.i
 
-image_tool_wrap.o: image_tool_wrap.cpp
-	$(CC) -fpic $(PHP_INCLUDES) -fpermissive -c image_tool_wrap.cpp -o image_tool_wrap.o
+image_tool_wrap.o: image_tool_wrap.cxx
+	$(CC) -fpic $(PHP_INCLUDES) -fpermissive -c image_tool_wrap.cxx -o image_tool_wrap.o
 
 image_tool.so.o: image.cpp
 	$(CC) -fpic -O2 -o image_tool.so.o -c image.cpp $(CCFLAG) $(DEBUG_FLAG)
@@ -76,7 +76,7 @@ image_tool.so: image_tool_wrap.o image_tool.so.o utils.so.o
 
 .PHONY: clean install
 clean:
-	-rm -rf test *.o *.so image_tool_wrap.cpp
+	-rm -rf test *.o *.so image_tool_wrap.cxx
 
 install:
 	install yjf-deskew /usr/local/bin
