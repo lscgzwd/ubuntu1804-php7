@@ -43,7 +43,7 @@ install:
 
 .PHONY: clean check
 clean:
-	-rm test *.o yimage_wrap.cpp *.so php_yimage.h
+	-rm -rf test *.o yimage_wrap.cpp *.so php_yimage.h
 
 check:
 	php t.php
