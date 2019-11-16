@@ -23,7 +23,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone &
     libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 \
     libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 \
     libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 \
-    lsb-release xdg-utils && apt-get clean && \
+    lsb-release xdg-utils telnet && apt-get clean && \
     locale-gen en_US.UTF-8
 RUN echo "%pyds ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers && (echo piyuedashi2018;echo piyuedashi2018) | smbpasswd -a -s pyds
 # opencv4.1.2
@@ -62,7 +62,7 @@ RUN apt-get install -yq libmagick++-6.q16-dev libmagick++-dev libmagickcore-6.q1
     cd /tmp/lib/image-tool && make clean && make && make install && \
     cd /tmp/lib/yimage && make clean && make && make install
 # nodejs & npm
-RUN bash /tmp/setup_10.x && \
+RUN bash /tmp/pkg/setup_10.x && \
     apt-get update && apt-get install -y nodejs && apt-get clean && \
     npm install -g n pm2 nuxt webpack cnpm && \
     npm config set puppeteer_download_host=https://npm.taobao.org/mirrors && \
