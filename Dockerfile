@@ -10,6 +10,7 @@ COPY pkg /tmp/pkg
 COPY lib /tmp/lib
 RUN groupadd -g 1000 pyds && useradd -s /bin/bash -g pyds pyds && echo "root:piyuedashi2018" | chpasswd && echo "pyds:piyuedashi2018" | chpasswd
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
+    rm -rf /etc/apt/sources.list && cp /tmp/pkg/sources.list /etc/apt/sources.list && \
     apt-get update && \
     apt-get install -yq tzdata software-properties-common && \
     dpkg-reconfigure -f noninteractive tzdata && \
@@ -64,9 +65,9 @@ RUN apt-get install -yq libmagick++-6.q16-dev libmagick++-dev libmagickcore-6.q1
 # nodejs & npm
 RUN bash /tmp/pkg/setup_10.x && \
     apt-get update && apt-get install -y nodejs && apt-get clean && \
-    npm install -g n pm2 nuxt webpack cnpm && \
+    npm install -g n pm2 nuxt webpack cnpm --registry=https://registry.npm.taobao.org && \
     npm config set puppeteer_download_host=https://npm.taobao.org/mirrors && \
-    npm install -g puppeteer urlencode --unsafe-perm=true && npm cache clean --force
+    npm install -g puppeteer urlencode --unsafe-perm=true --registry=https://registry.npm.taobao.org && npm cache clean --force
 # clean
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 CMD tail /dev/null
