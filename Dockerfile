@@ -5,20 +5,17 @@ MAINTAINER i@shuncheng.lu
 ENV LANG       en_US.UTF-8
 ENV LC_ALL     en_US.UTF-8
 ENV TZ         Asia/Shanghai
+VOLUME ["/tmp", "var/log", "/var/cache"]
 COPY setup_10.x /tmp/setup_10.x
 COPY wkhtmltox.deb /tmp/wkhtmltox.deb
 COPY lib /tmp/lib
-RUN groupadd -g 1000 pyds && useradd -s /bin/bash -g pyds pyds
-RUN echo "root:piyuedashi2018" | chpasswd
-RUN echo "pyds:piyuedashi2018" | chpasswd
+RUN groupadd -g 1000 pyds && useradd -s /bin/bash -g pyds pyds && echo "root:piyuedashi2018" | chpasswd && echo "pyds:piyuedashi2018" | chpasswd
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
-        apt-get update && \
-        apt-get install -yq tzdata software-properties-common && \
-        dpkg-reconfigure -f noninteractive tzdata && \
-        apt-get install -yq locales sudo && \
-        locale-gen en_US.UTF-8
-RUN echo "%pyds ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
-RUN apt-get install -yq curl wget net-tools iputils-ping vim openssl strace \
+    apt-get update && \
+    apt-get install -yq tzdata software-properties-common && \
+    dpkg-reconfigure -f noninteractive tzdata && \
+    apt-get install -yq locales sudo \
+    curl wget net-tools iputils-ping vim openssl strace \
     cron beanstalkd supervisor openssh-server librsvg2* git traceroute \
     bash-completion samba openjdk-8-jdk xfonts-75dpi xfonts-base xfonts-utils \
     xfonts-encodings zip unzip gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 \
@@ -30,8 +27,9 @@ RUN apt-get install -yq curl wget net-tools iputils-ping vim openssl strace \
     lsb-release xdg-utils build-essential cmake git libgtk2.0-dev pkg-config \
     libavcodec-dev libavformat-dev libswscale-dev \
     python-dev python-numpy python3-dev python3-numpy \
-    libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev
-RUN (echo piyuedashi2018;echo piyuedashi2018) | smbpasswd -a -s pyds
+    libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev && \
+    locale-gen en_US.UTF-8
+RUN echo "%pyds ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers && (echo piyuedashi2018;echo piyuedashi2018) | smbpasswd -a -s pyds
 # opencv4.1
 RUN cd /tmp && wget -O opencv.zip https://github.com/opencv/opencv/archive/4.1.1.zip && \
     unzip opencv.zip && cd opencv-4.1.1 && mkdir release && cd release && \
@@ -75,9 +73,9 @@ RUN bash /tmp/setup_10.x && \
     apt-get install -y nodejs && \
     npm install -g n pm2 nuxt webpack cnpm && \
     npm config set puppeteer_download_host=https://npm.taobao.org/mirrors && \
-    npm install -g puppeteer urlencode --unsafe-perm=true
+    npm install -g puppeteer urlencode --unsafe-perm=true && npm cache clean --force
 # clean
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && npm cache clean --force
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY php.ini /etc/php/7.0/cli/php.ini
 COPY php.ini /etc/php/7.0/fpm/php.ini
