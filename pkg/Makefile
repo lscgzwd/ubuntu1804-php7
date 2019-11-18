@@ -51,7 +51,7 @@ download:
 	unzip -q opencv.zip
 	find ./ -maxdepth 1 -type d | grep opencv | xargs -i mv {} opencv-$(OPENCV_VERSION)
 	find ./opencv-$(OPENCV_VERSION) -type f -name "*.txt" |xargs sed -i 's/https:\/\/raw.githubusercontent.com\/opencv\/opencv_3rdparty\//https:\/\/code.aliyun.com\/lscgzwd\/opencv_3rdparty\/raw\//g'
-    find ./opencv-$(OPENCV_VERSION) -type f -name "*.cmake" |xargs sed -i 's/https:\/\/raw.githubusercontent.com\/opencv\/opencv_3rdparty\//https:\/\/code.aliyun.com\/lscgzwd\/opencv_3rdparty\/raw\//g'
+	find ./opencv-$(OPENCV_VERSION) -type f -name "*.cmake" |xargs sed -i 's/https:\/\/raw.githubusercontent.com\/opencv\/opencv_3rdparty\//https:\/\/code.aliyun.com\/lscgzwd\/opencv_3rdparty\/raw\//g'
 	curl -Lo opencv_contrib.zip https://code.aliyun.com/lscgzwd/opencv_contrib/repository/archive.zip?ref=$(OPENCV_VERSION)
 	unzip -q opencv_contrib.zip
 	find ./ -maxdepth 1 -type d | grep opencv_contrib | xargs -i mv {} opencv_contrib-$(OPENCV_VERSION)
