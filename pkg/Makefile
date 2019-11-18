@@ -47,10 +47,12 @@ download:
 	rm -rf $(TMP_DIR)opencv
 	mkdir $(TMP_DIR)opencv
 	cd $(TMP_DIR)opencv
-	curl -Lo opencv.zip https://github.com/opencv/opencv/archive/$(OPENCV_VERSION).zip
+	curl -Lo opencv.zip https://code.aliyun.com/lscgzwd/opencv/repository/archive.zip?ref=$(OPENCV_VERSION)
 	unzip -q opencv.zip
-	curl -Lo opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/$(OPENCV_VERSION).zip
+	find ./ -maxdepth 1 -type d | grep opencv | xargs -i mv {} opencv-$(OPENCV_VERSION)
+	curl -Lo opencv_contrib.zip https://code.aliyun.com/lscgzwd/opencv_contrib/repository/archive.zip?ref=$(OPENCV_VERSION)
 	unzip -q opencv_contrib.zip
+	find ./ -maxdepth 1 -type d | grep opencv_contrib | xargs -i mv {} opencv_contrib-$(OPENCV_VERSION)
 	rm opencv.zip opencv_contrib.zip
 	cd -
 
@@ -96,7 +98,7 @@ build_cuda:
 
 # Cleanup temporary build files.
 clean:
-	go clean --cache
+	# go clean --cache
 	rm -rf $(TMP_DIR)opencv
 
 # Do everything.

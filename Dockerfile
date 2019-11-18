@@ -30,7 +30,7 @@ RUN echo "%pyds ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers && (echo piyuedashi2
 # opencv4.1.2
 RUN cd /tmp/pkg/ && make install
 # golang 1.13.4
-RUN cd /tmp && wget -O go.tar.gz https://studygolang.com/dl/golang/go1.13.4.linux-amd64.tar.gz && \
+RUN cd /tmp && curl -Lo go.tar.gz https://gomirrors.org/dl/go/go1.13.4.linux-amd64.tar.gz && \
     tar xf go.tar.gz && mv go /usr/local/ && \
     echo "export GOROOT=/usr/local/go              # 安装目录。\nexport GOPATH=/data/go     # 工作环境\nexport GOBIN=\$GOPATH/bin           # 可执行文件存放\nexport PATH=\$GOPATH:\$GOBIN:\$GOROOT/bin:\$PATH       # 添加PATH路径" >> /etc/bash.bashrc
 # inkscape
