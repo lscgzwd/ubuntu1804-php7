@@ -36,6 +36,11 @@ RUN cd /tmp && curl -Lo go.tar.gz https://gomirrors.org/dl/go/go1.13.4.linux-amd
     echo "export GOROOT=/usr/local/go              # 安装目录。\nexport GOPATH=/data/go     # 工作环境\nexport GOBIN=\$GOPATH/bin           # 可执行文件存放\nexport PATH=\$GOPATH:\$GOBIN:\$GOROOT/bin:\$PATH       # 添加PATH路径" >> /etc/bash.bashrc
 # inkscape
 RUN add-apt-repository ppa:inkscape.dev/stable && apt-get update && apt-get install -yq inkscape && apt-get clean
+# ImageMagick
+RUN cd /tmp && curl -Lo ImageMagick.tar.gz https://code.aliyun.com/lscgzwd/raw/blob/master/ImageMagick.tar.gz && \
+    tar xf ImageMagick.tar.gz && cd ImageMagick-7.0.9-12 && \
+    ./configure --prefix=/usr --sysconfdir=/etc --enable-hdri --with-modules --with-perl --with-jemalloc=yes && \
+    make && make install && ln -snf /usr/bin/MagickCore-config /usr/bin/Magick-config
 # nginx php
 RUN add-apt-repository -y ppa:ondrej/php && apt-get update && \
     apt-get install -yq nginx-full php7.0-cli php7.0-fpm php7.0-common php7.0-mysql php7.0-bcmath \
@@ -54,13 +59,7 @@ RUN add-apt-repository -y ppa:ondrej/php && apt-get update && \
     cp /tmp/pkg/php.ini /etc/php/7.0/fpm/php.ini && \
     cp /tmp/pkg/nginx.conf /etc/nginx/nginx.conf
 # image_tool yimage
-RUN apt-get install -yq libmagick++-6.q16-dev libmagick++-dev libmagickcore-6.q16-dev \
-    libmagickcore-6.q16hdri-dev libmagickcore-dev libmagickwand-6.q16-dev \
-    libmagickwand-6.q16hdri-dev libmagickwand-dev imagemagick-6.q16hdri \
-    imagemagick-common imagemagick libmagick++-dev libmagickwand-dev \
-    libboost-all-dev swig libjsoncpp-dev pagetools && \
-    ln -sf /usr/lib/x86_64-linux-gnu/ImageMagick-6.9.7/bin-q16/Magick++-config /usr/bin/Magick++-config && \
-    ln -sf /usr/lib/x86_64-linux-gnu/ImageMagick-6.9.7/bin-q16/Magick-config /usr/bin/Magick-config && \
+RUN apt-get install -yq libboost-all-dev swig libjsoncpp-dev pagetools && \
     cd /tmp/lib/image-tool && make clean && make && make install && \
     cd /tmp/lib/yimage && make clean && make && make install
 # nodejs & npm
