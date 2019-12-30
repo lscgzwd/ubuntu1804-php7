@@ -39,7 +39,7 @@ RUN add-apt-repository ppa:inkscape.dev/stable && apt-get update && apt-get inst
 # ImageMagick
 RUN cd /tmp && curl -Lo ImageMagick.tar.gz https://code.aliyun.com/lscgzwd/raw/raw/master/ImageMagick.tar.gz && \
     tar xf ImageMagick.tar.gz && cd ImageMagick-7.0.9-12 && \
-    ./configure --prefix=/usr --sysconfdir=/etc --enable-hdri --with-modules --with-perl --with-jemalloc=yes && \
+    ./configure --prefix=/usr --sysconfdir=/etc --enable-hdri --with-modules --with-jemalloc=yes && \
     make && make install && ln -snf /usr/bin/MagickCore-config /usr/bin/Magick-config
 # nginx php
 RUN add-apt-repository -y ppa:ondrej/php && apt-get update && \
