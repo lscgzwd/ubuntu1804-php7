@@ -37,9 +37,11 @@ RUN cd /tmp && curl -Lo go.tar.gz https://gomirrors.org/dl/go/go1.13.4.linux-amd
 # inkscape
 RUN add-apt-repository ppa:inkscape.dev/stable && apt-get update && apt-get install -yq inkscape && apt-get clean
 # ImageMagick
-RUN cd /tmp && curl -Lo ImageMagick.tar.gz https://code.aliyun.com/lscgzwd/raw/raw/master/ImageMagick.tar.gz && \
+RUN apt-get install -qy libopenexr-dev libwmf-dev libxml2-dev libbz2-dev libdjvulibre-dev libexif-dev \
+    libjpeg-dev libpng-dev  liblcms2-dev liblqr-1-0-dev libperl-dev libwebp-dev librsvg2-dev libgif-dev  && \
+    cd /tmp && curl -Lo ImageMagick.tar.gz https://code.aliyun.com/lscgzwd/raw/raw/master/ImageMagick.tar.gz && \
     tar xf ImageMagick.tar.gz && cd ImageMagick-7.0.9-12 && \
-    ./configure --prefix=/usr --sysconfdir=/etc --enable-hdri --with-modules --with-jemalloc=yes && \
+    ./configure --prefix=/usr --sysconfdir=/etc --enable-hdri --with-modules --with-jemalloc=yes --with-perl && \
     make && make install && ln -snf /usr/bin/MagickCore-config /usr/bin/Magick-config
 # nginx php
 RUN add-apt-repository -y ppa:ondrej/php && apt-get update && \
