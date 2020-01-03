@@ -260,7 +260,7 @@ erase_black_margin(Image &image)
     auto height = image.rows();
     auto ch = image.channels();
     auto get_color = [pixels, width, ch](unsigned int i, unsigned int j){
-    unsigned offset = ch * (width * j + i);
+        unsigned offset = ch * (width * j + i);
         // auto ptr = pixels + j * width + i;
         Quantum q = min(min(pixels[offset+0], pixels[offset+2]), pixels[offset+1]);
         return ((unsigned int)q) & 0xff;
@@ -325,7 +325,7 @@ extract_hlines(Image &image, bool trim_short_line)
     int width = image.columns();
     auto ch = image.channels();
     auto get_color = [pixels, width, ch](unsigned int i, unsigned int j){
-        unsigned offset = ch * (width * j + i);
+        unsigned offset = ch * (width * i + j);
         Quantum q = min(min(pixels[offset+0], pixels[offset+2]), pixels[offset+1]);
         // __typeof__(pixels) ptr = pixels + i * width + j;
         // Quantum q = min(min(ptr->red, ptr->blue), ptr->green);
