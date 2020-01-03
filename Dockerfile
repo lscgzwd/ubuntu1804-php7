@@ -47,9 +47,10 @@ RUN apt-get install -qy libopenexr-dev libwmf-dev libxml2-dev libbz2-dev libdjvu
 RUN add-apt-repository -y ppa:ondrej/php && apt-get update && \
     apt-get install -yq nginx-full php7.0-cli php7.0-fpm php7.0-common php7.0-mysql php7.0-bcmath \
     php7.0-gd php7.0-redis \
-    php7.0-curl php7.0-bz2 php7.0-imagick php7.0-mcrypt \
+    php7.0-curl php7.0-bz2 php7.0-mcrypt \
     php7.0-json php7.0-mbstring php7.0-soap php7.0-zip php7.0-xml \
     php7.0-dev libmcrypt-dev composer && \
+    pecl install Imagick && \
     sed -i "s/pid\s*=\s*.*pid/pid=\/data\/log\/php-fpm.pid/g" /etc/php/7.0/fpm/php-fpm.conf && \
     sed -i "s/error_log\s*=\s*.*fpm.log/error_log=\/data\/log\/php-fpm.log/g" /etc/php/7.0/fpm/php-fpm.conf && \
     echo "fastcgi_split_path_info ^(.+\\.php)(/.+)\$; #增加这一句 \nfastcgi_param PATH_INFO \$fastcgi_path_info; #增加这一句 \nfastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;" >> /etc/nginx/fastcgi_params && \
