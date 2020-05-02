@@ -5,7 +5,7 @@ MAINTAINER i@shuncheng.lu
 ENV LANG       en_US.UTF-8
 ENV LC_ALL     en_US.UTF-8
 ENV TZ=Asia/Shanghai
-VOLUME ["/tmp", "/var/log", "/var/cache"]
+VOLUME ["/tmp", "/var/cache"]
 COPY setup_12.x /tmp/setup_12.x
 # RUN sed -i "s/archive\.ubuntu\.com/mirrors.aliyun.com/g" /etc/apt/sources.list && \
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
