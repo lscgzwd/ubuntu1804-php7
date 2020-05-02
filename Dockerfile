@@ -1,30 +1,30 @@
 # see: https://github.com/fideloper/docker-nginx-php/
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 MAINTAINER i@shuncheng.lu
 
 ENV LANG       en_US.UTF-8
 ENV LC_ALL     en_US.UTF-8
 ENV TZ=Asia/Shanghai
-COPY setup_10.x /tmp/setup_10.x
+VOLUME ["/tmp", "/var/log", "/var/cache"]
+COPY setup_12.x /tmp/setup_12.x
 # RUN sed -i "s/archive\.ubuntu\.com/mirrors.aliyun.com/g" /etc/apt/sources.list && \
-RUN    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
-    apt-get update && \
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
+    apt-get update && apt-get upgrade -y && \
     apt-get install -yq tzdata software-properties-common && \
     dpkg-reconfigure -f noninteractive tzdata && \
-    add-apt-repository -y ppa:ondrej/php && \
     apt-get install -yq locales && \
     locale-gen en_US.UTF-8 && \
+    add-apt-repository -y ppa:ondrej/php && \
     apt-get install -yq git lua-nginx-redis lua-cjson-dev nginx-extras lua-nginx-redis-connector lua-nginx-string lua-nginx-cookie lua-nginx-kafka  \
     php7.2-cli php7.2-fpm php7.2-common php7.2-mysql php7.2-bcmath \
     php7.2-gd php-memcached php7.2-redis \
     php7.2-curl php-pear php7.2-bz2 php7.2-imagick \
     php7.2-json php7.2-mbstring php7.2-soap php7.2-zip php7.2-xml \
-    curl wget net-tools iputils-ping vim openssl strace \
-    php7.2-dev libmcrypt-dev cron nodejs beanstalkd supervisor composer && \
-    apt-get upgrade -y && \
-    bash /tmp/setup_10.x && \
+    curl wget net-tools iputils-ping vim openssl \
+    php7.2-dev libmcrypt-dev cron nodejs supervisor composer && \
+    bash /tmp/setup_12.x && \
     apt-get install -y nodejs && \
-    npm install -g n pm2 nuxt webpack cnpm && \ 
+    npm install -g n pm2 && \ 
     sed -i "s/pid\s*=\s*.*pid/pid=\/data\/log\/tmp\/php-fpm.pid/g" /etc/php/7.2/fpm/php-fpm.conf && \
     sed -i "s/error_log\s*=\s*.*fpm.log/error_log=\/data\/log\/tmp\/php-fpm.log/g" /etc/php/7.2/fpm/php-fpm.conf && \
     pecl install mcrypt-snapshot && \
