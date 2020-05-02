@@ -10,7 +10,6 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone &
     apt-get update && \
     apt-get install -yq tzdata software-properties-common && \
     dpkg-reconfigure -f noninteractive tzdata && \
-    add-apt-repository -y ppa:ondrej/php && \
     apt-get install -yq locales && \
     locale-gen en_US.UTF-8 && \
     apt-get install -yq git nginx-full  \
