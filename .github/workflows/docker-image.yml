@@ -20,3 +20,9 @@ jobs:
         docker pull mysql:8.4
         docker tag mysql:8.4 registry.cn-beijing.aliyuncs.com/cateye/mysql:8.4
         docker push registry.cn-beijing.aliyuncs.com/cateye/mysql:8.4
+        docker pull redis:6.0
+        docker tag redis:6.0 registry.cn-beijing.aliyuncs.com/cateye/redis:6.0
+        docker push registry.cn-beijing.aliyuncs.com/cateye/redis:6.0
+        docker pull gogs/gogs:0.12.3
+        docker tag redis:6.0 registry.cn-beijing.aliyuncs.com/cateye/gogs:0.12.3
+        docker push registry.cn-beijing.aliyuncs.com/cateye/gogs:0.12.3
