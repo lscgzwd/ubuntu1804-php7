@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: |
+        docker login --username=lushuncheng --password Lushuncheng5005 registry.cn-beijing.aliyuncs.com
+        docker pull mysql:8.4
+        docker tag mysql:8.4 registry.cn-beijing.aliyuncs.com/cateye/mysql:8.4
+        docker push registry.cn-beijing.aliyuncs.com/cateye/mysql:8.4
