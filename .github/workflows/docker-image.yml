@@ -24,5 +24,8 @@ jobs:
         docker tag redis:6.0 registry.cn-beijing.aliyuncs.com/cateye/redis:6.0
         docker push registry.cn-beijing.aliyuncs.com/cateye/redis:6.0
         docker pull gogs/gogs:0.12.3
-        docker tag redis:6.0 registry.cn-beijing.aliyuncs.com/cateye/gogs:0.12.3
+        docker tag gogs/gogs:0.12.3 registry.cn-beijing.aliyuncs.com/cateye/gogs:0.12.3
         docker push registry.cn-beijing.aliyuncs.com/cateye/gogs:0.12.3
+        docker pull caddy:2.4.6
+        docker tag caddy:2.4.6 registry.cn-beijing.aliyuncs.com/cateye/caddy:2.4.6
+        docker push registry.cn-beijing.aliyuncs.com/cateye/caddy:2.4.6
